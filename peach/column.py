@@ -1,4 +1,7 @@
 #   coding=utf-8
+import fieldtype
+
+
 class BaseColumn(object):
     def set_name(self,name):
         self.name=name
@@ -15,22 +18,40 @@ class Column(BaseColumn):
         self.default=default
 
     def __eq__(self, other):
-        return '{}={}'.format(self.name,other)
+        if isinstance(self.type,fieldtype.Number):
+            return '{}={}'.format(self.name,other)
+        else:
+            return "{}='{}'".format(self.name, other)
 
     def __ne__(self, other):
-        return '{}!={}'.format(self.name, other)
+        if isinstance(self.type,fieldtype.Number):
+            return '{}!={}'.format(self.name,other)
+        else:
+            return "{}!='{}'".format(self.name, other)
 
     def __lt__(self, other):
-        return '{}<{}'.format(self.name, other)
+        if isinstance(self.type,fieldtype.Number):
+            return '{}<{}'.format(self.name,other)
+        else:
+            return "{}<'{}'".format(self.name, other)
 
     def __gt__(self, other):
-        return '{}>{}'.format(self.name, other)
+        if isinstance(self.type,fieldtype.Number):
+            return '{}>{}'.format(self.name,other)
+        else:
+            return "{}>'{}'".format(self.name, other)
 
     def __le__(self, other):
-        return '{}<={}'.format(self.name, other)
+        if isinstance(self.type,fieldtype.Number):
+            return '{}<={}'.format(self.name,other)
+        else:
+            return "{}<='{}'".format(self.name, other)
 
     def __ge__(self, other):
-        return '{}>={}'.format(self.name, other)
+        if isinstance(self.type,fieldtype.Number):
+            return '{}>={}'.format(self.name,other)
+        else:
+            return "{}>='{}'".format(self.name, other)
 
 
 class ForeignKeyColumn(BaseColumn):
