@@ -177,7 +177,6 @@ class Query(BaseSQLModel):
 
     def group_by(self,field):
         self._group_by+='group by '+field.name
-        print 'group_by:{}'.format(self._group_by)
         return self
 
     def order_by(self,field,desc=False):
@@ -189,17 +188,14 @@ class Query(BaseSQLModel):
         self._order_by += field.name
         if desc:
             self._order_by += ' desc'
-        print 'order_by:{}'.format(self._order_by)
         return self
 
     def limit(self,num):
         self._limit+='limit '+str(num)
-        print 'limit:{}'.format(self._limit)
         return  self
 
     def offset(self,index):
         self._offset+='offset '+str(index)
-        print 'offset:{}'.format(self._offset)
         return self
 
     def all(self):
